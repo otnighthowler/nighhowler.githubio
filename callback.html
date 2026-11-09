@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex" />
+  <meta name="referrer" content="no-referrer" />
+  <title>Hearth · TikTok login</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="wrap">
+    <header><a href="./"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3c2 6 9 9 9 17a9 9 0 0 1-18 0c0-5 3-7 4-11 1 3 3 4 3 4s-1-6 2-10z"/></svg>Hearth</a></header>
+
+    <div id="ok" hidden>
+      <h1><span class="ok">✓</span> TikTok approved</h1>
+      <p>Copy this address and paste it into Hearth on your computer (<b>Accounts → Connect</b>).</p>
+      <div class="card">
+        <div class="code" id="addr"></div>
+        <p style="margin:14px 0 0"><button class="btn" id="copy">Copy address</button> <span id="copied" class="ok" hidden>Copied!</span></p>
+      </div>
+      <p class="muted">This page doesn't send your login anywhere. The code stays in your browser until you paste it into Hearth, and it only works once, for a few minutes.</p>
+    </div>
+
+    <div id="err" hidden>
+      <h1><span class="bad">✕</span> TikTok didn't connect</h1>
+      <div class="card"><p id="errmsg" style="margin:0"></p></div>
+      <p>Go back to Hearth and click <b>Open TikTok login</b> to try again.</p>
+    </div>
+
+    <div id="none" hidden>
+      <h1>Hearth TikTok login</h1>
+      <p>This is where TikTok sends you after you approve Hearth. Start from <b>Accounts → Open TikTok login</b> in Hearth.</p>
+    </div>
+
+    <footer><a href="./">Home</a><a href="terms.html">Terms of Service</a><a href="privacy.html">Privacy Policy</a></footer>
+  </div>
+  <script>
+    // Everything happens in the browser: nothing is sent to any server from this page.
+    const q = new URLSearchParams(location.search);
+    const show = (id) => (document.getElementById(id).hidden = false);
+    if (q.get('code')) {
+      show('ok');
+      document.getElementById('addr').textContent = location.href;
+      document.getElementById('copy').onclick = async () => {
+        try { await navigator.clipboard.writeText(location.href); }
+        catch { const r = document.createRange(); r.selectNodeContents(document.getElementById('addr')); getSelection().removeAllRanges(); getSelection().addRange(r); document.execCommand('copy'); }
+        document.getElementById('copied').hidden = false;
+      };
+    } else if (q.get('error')) {
+      show('err');
+      document.getElementById('errmsg').textContent = q.get('error_description') || q.get('error');
+    } else show('none');
+  </script>
+</body>
+</html>

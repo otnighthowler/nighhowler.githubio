@@ -1,0 +1,24 @@
+:root { --bg: #f7f3ee; --panel: #fffdfa; --line: #e4dbcf; --text: #2a211b; --muted: #7d6e62; --ember: #e8611c; --ember-soft: #fde6d6; color-scheme: light; }
+@media (prefers-color-scheme: dark) { :root { --bg: #15100d; --panel: #1e1713; --line: #3a2d24; --text: #f3e9e0; --muted: #a8958a; --ember-soft: #3d2216; color-scheme: dark; } }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--text); font: 16px/1.6 ui-sans-serif, system-ui, "Segoe UI", Roboto, sans-serif; }
+.wrap { max-width: 760px; margin: 0 auto; padding: 32px 16px 64px; }
+header { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 20px; margin-bottom: 28px; }
+header svg { width: 28px; height: 28px; fill: var(--ember); }
+header a { color: inherit; text-decoration: none; display: flex; align-items: center; gap: 10px; }
+nav { margin-left: auto; display: flex; gap: 16px; font-size: 14px; font-weight: 500; }
+nav a { color: var(--muted); text-decoration: none; }
+nav a:hover { color: var(--ember); }
+h1 { font-size: 32px; line-height: 1.2; margin: 0 0 12px; letter-spacing: -.02em; }
+h2 { font-size: 20px; margin: 32px 0 8px; }
+p, li { color: var(--text); }
+.muted { color: var(--muted); }
+.card { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 20px; margin: 18px 0; }
+.code { font: 14px/1.5 ui-monospace, Consolas, monospace; background: var(--bg); border: 1px solid var(--line); border-radius: 10px; padding: 12px; word-break: break-all; user-select: all; }
+.btn { display: inline-block; background: var(--ember); color: #fff; border: 0; border-radius: 10px; padding: 11px 18px; font: inherit; font-weight: 700; cursor: pointer; text-decoration: none; }
+.btn:hover { filter: brightness(1.06); }
+.ok { color: #2f9e5b; font-weight: 700; }
+.bad { color: #d23c3c; font-weight: 700; }
+.steps li { margin: 6px 0; }
+footer { margin-top: 48px; padding-top: 16px; border-top: 1px solid var(--line); font-size: 13px; color: var(--muted); display: flex; gap: 16px; flex-wrap: wrap; }
+footer a { color: var(--muted); }
